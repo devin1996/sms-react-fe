@@ -1,11 +1,12 @@
 import React from 'react';
+import Wrapper from './wrapper';
 
 const Students = () => {
     return (
-        <div>
+<Wrapper><div>
 
             <h2>Section title</h2>
-            <div class="table-responsive">
+            <div className="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
@@ -34,7 +35,8 @@ const Students = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div></Wrapper>
+
     );
 };
 
