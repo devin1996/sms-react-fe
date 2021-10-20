@@ -34,16 +34,16 @@ const Students = () => {
     return (
         <Wrapper><div>
 
-            
+
 
             <div className="table-responsive" Style="margin-left: 310px;">
-                
-            <div className="pt-3 pb-2 mb-3 border-bottom" Style="float:centre;">
-            <Link to='/admin/students/createuser' className="btn btn-dark">Add New Student</Link>
-            </div>
-            <div className="pt-3 pb-2 mb-3 border-bottom" Style="float:centre;">
-            <Link to='/admin/students/createuser' className="btn btn-dark">Admin Settings   </Link>
-            </div>
+
+                <div className="pt-3 pb-2 mb-3 border-bottom" Style="float:centre;">
+                    <Link to='/admin/students/createuser' className="btn btn-dark">Add New Student</Link>
+                </div>
+                <div className="pt-3 pb-2 mb-3 border-bottom" Style="float:centre;">
+                    <Link to='/admin/students/createuser' className="btn btn-dark">Admin Settings   </Link>
+                </div>
                 <table className="table table-striped table-sm" >
                     <thead>
                         <tr>
@@ -75,14 +75,13 @@ const Students = () => {
                                         <td>{p.isDisabled.toString()}</td>
                                         <td>
                                             <div className="btn-group mr-2">
-                                                <a href="#" className="btn btn-sm btn-outline-secondary"
-                                                    onClick={() => del(p.id)}
-                                                >Delete</a>
+                                                <Link to={'/admin/students/' + p.id + '/update'} className="btn btn-sm btn-outline-secondary"
+                                                >Edit</Link>
                                             </div>
                                         </td>
                                         <td>
                                             <div className="btn-group mr-2">
-                                                <a href="#" className="btn btn-sm btn-outline-secondary"
+                                                <a href="#" className="btn btn-sm btn-outline-danger"
                                                     onClick={() => del(p.id)}
                                                 >Delete</a>
                                             </div>
