@@ -19,6 +19,17 @@ const Students = () => {
         )();
     }, []);
 
+    const del = async (id: number) => {
+        if (window.confirm('Confirm before removing this student'+ id)) {
+            await fetch('http://localhost:8000/api/students/'+id, {
+                method: 'DELETE'
+            });
+
+            setStudents(students.filter(
+                (s: Studentz) => s.id !== id));
+        }
+    }
+
     return (
         <Wrapper><div>
 
@@ -35,7 +46,8 @@ const Students = () => {
                             <th>grade</th>
                             <th>batchno</th>
                             <th>isDisabled</th>
-                                
+                            <th>isDisabled</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -44,16 +56,23 @@ const Students = () => {
                                 return (
                                     <tr key={p.id}>
                                         <td>{p.id}</td>
-                                        <td><img src={p.image} height="180"/></td>
+                                        <td><img src={p.image} height="180" /></td>
                                         <td>{p.indexNo}</td>
                                         <td>{p.name}</td>
                                         <td>{p.email}</td>
                                         <td>{p.grade}</td>
                                         <td>{p.batchno}</td>
-                                        <td>{p.isDisabled}</td>
+                                        <td>{p.isDisabled.toString()}</td>
+                                        <td>
+                                            <div className="btn-group mr-2">
+                                                <a href="#" className="btn btn-sm btn-outline-secondary"
+                                                    onClick={() => del(p.id)}
+                                                >Delete</a>
+                                            </div>
+                                        </td>
                                     </tr>
                                 )
-                            }   
+                            }
                         )}
                     </tbody>
                 </table>
