@@ -1,37 +1,60 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Wrapper from './wrapper';
+import { Studentz } from '../interfaces/studentz';
 
 const Students = () => {
+
+    const [students, setStudents] = useState([]);
+
+    useEffect(() => {
+        (
+            async () => {
+                const response = await fetch('http://localhost:8000/api/students');
+
+                const data = await response.json();
+
+                console.log(data);
+                setStudents(data);
+            }
+        )();
+    }, []);
+
     return (
-<Wrapper><div>
+        <Wrapper><div>
 
             <h2>Section title</h2>
-            <div className="table-responsive">
-                <table class="table table-striped table-sm">
+            <div className="table-responsive" Style="float:right;">
+                <table className="table table-striped table-sm" >
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Header</th>
-                            <th>Header</th>
-                            <th>Header</th>
-                            <th>Header</th>
+                            <th>image</th>
+                            <th>indexNo</th>
+                            <th>name</th>
+                            <th>email</th>
+                            <th>grade</th>
+                            <th>batchno</th>
+                            <th>isDisabled</th>
+                                
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1,001</td>
-                            <td>Lorem</td>
-                            <td>ipsum</td>
-                            <td>dolor</td>
-                            <td>sit</td>
-                        </tr>
-                        <tr>
-                            <td>1,002</td>
-                            <td>amet</td>
-                            <td>consectetur</td>
-                            <td>adipiscing</td>
-                            <td>elit</td>
-                        </tr>
+                        {students.map(
+                            (p: Studentz) => {
+                                return (
+                                    <tr key={p.id}>
+                                        <td>{p.id}</td>
+                                        <td><img src={p.image} height="180"/></td>
+                                        <td>{p.indexNo}</td>
+                                        <td>{p.name}</td>
+                                        <td>{p.email}</td>
+                                        <td>{p.grade}</td>
+                                        <td>{p.batchno}</td>
+                                        <td>{p.isDisabled}</td>
+                                    </tr>
+                                )
+                            }   
+                        )}
                     </tbody>
                 </table>
             </div>
