@@ -5,6 +5,7 @@ import Menu from './components/Menu';
 import Students from './admin/students';
 import { BrowserRouter, Route } from "react-router-dom";
 import UserVIew from './user/useview';
+import AddStudent from './admin/AddStudent';
 
 function App() {
   return (
@@ -13,8 +14,10 @@ function App() {
 
       <BrowserRouter>
       <Route path='/' exact component={UserVIew} />
-        <Route path='/user/userview' component={UserVIew} />
-        <Route path='/admin/students' component={Students} />
+        <Route path='/user/userview' exact component={UserVIew} />
+        <Route path='/admin/students' exact component={Students} />
+        <Route path='/admin/students/createuser' exact component={AddStudent} />
+
       </BrowserRouter>
 
 
